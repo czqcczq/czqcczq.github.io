@@ -1,72 +1,972 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>陈治强的个人主页</title>
+    <title>Zhicheng Chen | AI Researcher</title>
+
+    <meta
+        name="description"
+        content="Personal academic homepage of Zhicheng Chen, a graduate student focusing on artificial intelligence, large language models, agent systems, and multimodal learning."
+    >
 
     <style>
+        :root {
+            --background: #07111f;
+            --background-light: #0d1b2e;
+            --card-background: rgba(18, 35, 56, 0.72);
+            --card-border: rgba(255, 255, 255, 0.10);
+            --primary: #60a5fa;
+            --secondary: #a78bfa;
+            --accent: #22d3ee;
+            --text-main: #f8fafc;
+            --text-secondary: #b8c5d6;
+            --text-muted: #8493a8;
+            --max-width: 1080px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+            color: var(--text-main);
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(96, 165, 250, 0.18),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 15%,
+                    rgba(167, 139, 250, 0.16),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 70% 80%,
+                    rgba(34, 211, 238, 0.10),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    var(--background),
+                    var(--background-light)
+                );
             line-height: 1.7;
-            color: #333;
-        }
-
-        h1 {
-            margin-bottom: 5px;
-        }
-
-        h2 {
-            margin-top: 35px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 6px;
         }
 
         a {
-            color: #0969da;
+            color: inherit;
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .container {
+            width: min(92%, var(--max-width));
+            margin: 0 auto;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(7, 17, 31, 0.76);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-content {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            font-size: 1.1rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .logo span {
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary),
+                var(--accent)
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .hero {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.4fr 0.8fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 7px 14px;
+            border: 1px solid rgba(96, 165, 250, 0.25);
+            border-radius: 999px;
+            background: rgba(96, 165, 250, 0.08);
+            color: #bfdbfe;
+            font-size: 0.86rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #34d399;
+            box-shadow: 0 0 16px rgba(52, 211, 153, 0.8);
+        }
+
+        h1 {
+            max-width: 820px;
+            font-size: clamp(3.2rem, 7vw, 6.3rem);
+            line-height: 1.02;
+            letter-spacing: -0.055em;
+        }
+
+        .gradient-text {
+            display: block;
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary),
+                var(--accent)
+            );
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 760px;
+            margin-top: 28px;
+            color: var(--text-secondary);
+            font-size: 1.08rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 36px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 12px;
+            font-weight: 650;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button-primary {
+            background: linear-gradient(
+                90deg,
+                var(--primary),
+                var(--secondary)
+            );
+            color: white;
+            box-shadow: 0 14px 35px rgba(96, 165, 250, 0.18);
+        }
+
+        .button-secondary {
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-main);
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(96, 165, 250, 0.5);
+            background: rgba(96, 165, 250, 0.08);
+        }
+
+        .profile-card {
+            position: relative;
+            padding: 34px;
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            background: var(--card-background);
+            box-shadow: 0 28px 70px rgba(0, 0, 0, 0.28);
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(96, 165, 250, 0.18);
+            filter: blur(8px);
+        }
+
+        .avatar {
+            position: relative;
+            width: 112px;
+            height: 112px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 26px;
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            border-radius: 28px;
+            background: linear-gradient(
+                135deg,
+                rgba(96, 165, 250, 0.30),
+                rgba(167, 139, 250, 0.28)
+            );
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .profile-card h2 {
+            font-size: 1.55rem;
+            margin-bottom: 7px;
+        }
+
+        .profile-role {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .profile-meta {
+            display: grid;
+            gap: 14px;
+            margin-top: 28px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-secondary);
+            font-size: 0.94rem;
+        }
+
+        .meta-icon {
+            width: 24px;
+            flex-shrink: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        section {
+            padding: 96px 0;
+        }
+
+        .section-header {
+            max-width: 720px;
+            margin-bottom: 42px;
+        }
+
+        .section-label {
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 750;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+            letter-spacing: -0.035em;
+        }
+
+        .section-description {
+            margin-top: 16px;
+            color: var(--text-secondary);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .card {
+            height: 100%;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            border-radius: 22px;
+            background: var(--card-background);
+            backdrop-filter: blur(16px);
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(96, 165, 250, 0.34);
+        }
+
+        .card h3 {
+            margin-bottom: 14px;
+            font-size: 1.25rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+        }
+
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .research-card {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-number {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: rgba(96, 165, 250, 0.75);
+            font-family: "Courier New", monospace;
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 20px;
+        }
+
+        .tag {
+            padding: 6px 11px;
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #cbd5e1;
+            font-size: 0.78rem;
+        }
+
+        .timeline {
+            position: relative;
+            display: grid;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 30px;
+            padding: 30px;
+            border: 1px solid var(--card-border);
+            border-radius: 22px;
+            background: var(--card-background);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .timeline-subtitle {
+            margin-bottom: 12px;
+            color: var(--text-muted);
+            font-size: 0.92rem;
+        }
+
+        .timeline-content p {
+            color: var(--text-secondary);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card p {
+            flex-grow: 1;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 24px;
+            color: var(--primary);
+            font-weight: 650;
+        }
+
+        .contact-card {
+            display: grid;
+            grid-template-columns: 1.4fr 0.6fr;
+            align-items: center;
+            gap: 40px;
+            padding: 48px;
+            border: 1px solid rgba(96, 165, 250, 0.20);
+            border-radius: 28px;
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(96, 165, 250, 0.12),
+                    rgba(167, 139, 250, 0.08)
+                ),
+                var(--card-background);
+        }
+
+        .contact-card p {
+            max-width: 680px;
+            margin-top: 14px;
+            color: var(--text-secondary);
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        footer {
+            padding: 34px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+            color: var(--text-muted);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 900px) {
+            .hero-grid,
+            .about-grid,
+            .contact-card {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                min-height: auto;
+            }
+
+            .profile-card {
+                max-width: 540px;
+            }
+
+            .research-grid,
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .contact-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            h1 {
+                font-size: 3.25rem;
+            }
+
+            section {
+                padding: 74px 0;
+            }
+
+            .card,
+            .profile-card,
+            .timeline-item,
+            .contact-card {
+                padding: 24px;
+            }
+
+            .hero-actions,
+            .contact-actions {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
         }
     </style>
 </head>
 
 <body>
 
-    <h1>陈治强</h1>
-    <p>Biomedical Engineering Graduate Student</p>
+    <nav>
+        <div class="container nav-content">
+            <a class="logo" href="#home">
+                <span>Zhicheng Chen</span>
+            </a>
 
-    <h2>About Me</h2>
-    <p>
-        I am a graduate student in Biomedical Engineering.
-        My research interests include biomedical instrumentation,
-        artificial intelligence, large language models, and agent systems.
-    </p>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>Research Interests</h2>
-    <p>
-        Biomedical Instrumentation · Large Language Models ·
-        Agent Systems · Multimodal Learning
-    </p>
+    <main>
 
-    <h2>Projects</h2>
-    <p>
-        This section will be updated with my research projects and academic work.
-    </p>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
 
-    <h2>Contact</h2>
-    <p>
-        GitHub:
-        <a href="https://github.com/czqcczq">
-            github.com/czqcczq
-        </a>
-    </p>
+                <div>
+                    <div class="eyebrow">
+                        <span class="status-dot"></span>
+                        Graduate Student in Artificial Intelligence
+                    </div>
+
+                    <h1>
+                        Exploring
+                        <span class="gradient-text">Intelligent Systems.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        I am currently a graduate student at the City University
+                        of Hong Kong, and I received my undergraduate education
+                        at Nanchang University. My interests focus on artificial
+                        intelligence, especially large language models, agent
+                        systems, multimodal learning, and model training.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#research">
+                            View My Research
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="https://github.com/czqcczq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            GitHub Profile
+                        </a>
+                    </div>
+                </div>
+
+                <aside class="profile-card">
+                    <div class="avatar">ZC</div>
+
+                    <h2>Zhicheng Chen</h2>
+                    <p class="profile-role">
+                        AI Researcher & Graduate Student
+                    </p>
+
+                    <div class="profile-meta">
+                        <div class="meta-item">
+                            <span class="meta-icon">01</span>
+                            <span>
+                                City University of Hong Kong
+                            </span>
+                        </div>
+
+                        <div class="meta-item">
+                            <span class="meta-icon">02</span>
+                            <span>
+                                Large Language Models and Agent Systems
+                            </span>
+                        </div>
+
+                        <div class="meta-item">
+                            <span class="meta-icon">03</span>
+                            <span>
+                                Hong Kong
+                            </span>
+                        </div>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+
+                <div class="section-header">
+                    <p class="section-label">About Me</p>
+                    <h2 class="section-title">
+                        Building practical and reliable AI systems
+                    </h2>
+                    <p class="section-description">
+                        My academic interests lie at the intersection of
+                        foundation models, reasoning, learning algorithms,
+                        and intelligent system design.
+                    </p>
+                </div>
+
+                <div class="about-grid">
+                    <article class="card">
+                        <h3>Academic Background</h3>
+                        <p>
+                            I am currently pursuing graduate study at the
+                            City University of Hong Kong. Before that, I
+                            completed my undergraduate education at Nanchang
+                            University, where I developed a strong interest in
+                            artificial intelligence and machine learning.
+                        </p>
+                    </article>
+
+                    <article class="card">
+                        <h3>Current Focus</h3>
+                        <p>
+                            I am interested in how large language models can
+                            perform planning, reasoning, tool use, and
+                            multi-step decision-making. I also explore model
+                            training, alignment, distillation, and evaluation.
+                        </p>
+                    </article>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="research">
+            <div class="container">
+
+                <div class="section-header">
+                    <p class="section-label">Research Interests</p>
+                    <h2 class="section-title">
+                        Areas I am currently exploring
+                    </h2>
+                </div>
+
+                <div class="research-grid">
+
+                    <article class="card research-card">
+                        <span class="research-number">01 / LLM</span>
+                        <h3>Large Language Models</h3>
+                        <p>
+                            Training, fine-tuning, alignment, knowledge
+                            distillation, and efficient adaptation of large
+                            language models for reasoning-intensive tasks.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">LLM Training</span>
+                            <span class="tag">SFT</span>
+                            <span class="tag">RLHF</span>
+                            <span class="tag">Distillation</span>
+                        </div>
+                    </article>
+
+                    <article class="card research-card">
+                        <span class="research-number">02 / AGENT</span>
+                        <h3>Agent Systems</h3>
+                        <p>
+                            Planning, tool selection, multi-step reasoning,
+                            memory, human-in-the-loop interaction, and the
+                            evaluation of autonomous AI agents.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Planning</span>
+                            <span class="tag">Tool Use</span>
+                            <span class="tag">Agent Loop</span>
+                            <span class="tag">Evaluation</span>
+                        </div>
+                    </article>
+
+                    <article class="card research-card">
+                        <span class="research-number">03 / MULTIMODAL</span>
+                        <h3>Multimodal Learning</h3>
+                        <p>
+                            Learning unified representations across text,
+                            images, and other modalities to support robust
+                            perception, generation, and interaction.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Vision-Language</span>
+                            <span class="tag">Representation Learning</span>
+                            <span class="tag">Generative AI</span>
+                        </div>
+                    </article>
+
+                    <article class="card research-card">
+                        <span class="research-number">04 / REASONING</span>
+                        <h3>Reasoning and Alignment</h3>
+                        <p>
+                            Improving model reasoning through preference
+                            learning, reinforcement learning, process
+                            supervision, and systematic evaluation.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Reasoning</span>
+                            <span class="tag">Alignment</span>
+                            <span class="tag">RL</span>
+                            <span class="tag">Benchmarking</span>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+
+                <div class="section-header">
+                    <p class="section-label">Education</p>
+                    <h2 class="section-title">
+                        Academic journey
+                    </h2>
+                </div>
+
+                <div class="timeline">
+
+                    <article class="timeline-item">
+                        <div class="timeline-date">
+                            Present
+                        </div>
+
+                        <div class="timeline-content">
+                            <h3>City University of Hong Kong</h3>
+                            <p class="timeline-subtitle">
+                                Graduate Student
+                            </p>
+                            <p>
+                                Pursuing graduate study with a focus on
+                                artificial intelligence, foundation models,
+                                intelligent agents, and machine learning.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="timeline-item">
+                        <div class="timeline-date">
+                            Undergraduate
+                        </div>
+
+                        <div class="timeline-content">
+                            <h3>Nanchang University</h3>
+                            <p class="timeline-subtitle">
+                                Undergraduate Education
+                            </p>
+                            <p>
+                                Built a foundation in artificial intelligence,
+                                machine learning, deep learning, programming,
+                                and intelligent system development.
+                            </p>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+
+                <div class="section-header">
+                    <p class="section-label">Selected Projects</p>
+                    <h2 class="section-title">
+                        Research and engineering experience
+                    </h2>
+                </div>
+
+                <div class="project-grid">
+
+                    <article class="card project-card">
+                        <h3>LLM Training and Alignment</h3>
+                        <p>
+                            Explored supervised fine-tuning, reward modeling,
+                            reinforcement learning, and model evaluation for
+                            open-source language models.
+                        </p>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/czqcczq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View on GitHub →
+                        </a>
+                    </article>
+
+                    <article class="card project-card">
+                        <h3>Response Distillation</h3>
+                        <p>
+                            Studied teacher-student knowledge transfer for
+                            mathematical reasoning, code generation, and
+                            instruction-following tasks.
+                        </p>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/czqcczq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View on GitHub →
+                        </a>
+                    </article>
+
+                    <article class="card project-card">
+                        <h3>AI Agent Evaluation</h3>
+                        <p>
+                            Investigated planning, tool invocation, multi-step
+                            task completion, runtime efficiency, and evaluation
+                            methodologies for agent systems.
+                        </p>
+
+                        <a
+                            class="project-link"
+                            href="https://github.com/czqcczq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            View on GitHub →
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+
+                <div class="contact-card">
+                    <div>
+                        <p class="section-label">Contact</p>
+                        <h2 class="section-title">
+                            Let’s connect
+                        </h2>
+                        <p>
+                            I am interested in academic discussions and
+                            collaborations related to large language models,
+                            agent systems, multimodal learning, and AI
+                            evaluation.
+                        </p>
+                    </div>
+
+                    <div class="contact-actions">
+                        <a
+                            class="button button-primary"
+                            href="https://github.com/czqcczq"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            Visit GitHub
+                        </a>
+
+                        <a
+                            class="button button-secondary"
+                            href="mailto:czq493331@gmail.com"
+                        >
+                            Send Email
+                        </a>
+                        -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            © 2026 Zhicheng Chen. Built with HTML and CSS.
+        </div>
+    </footer>
 
 </body>
 </html>
